@@ -1,9 +1,9 @@
 # actual-esync
-A utility to synchronize transactions with Actual Budget via Emails
+A utility to synchronize transactions with Actual Budget via Emails. Currently it supports Gmail.
 
 
 # Setup
-1. Enable Email notifications in your Bank for every transaction and in your Gmail app, filter those messages so that it automatically applies a custom label
+1. Enable Email notifications in your Bank Account for every transaction. In your Gmail app, filter those messages so that it automatically applies a custom label (label should be unique for every Account)
 1. Enable the Gmail API and Obtain the credentails JSON file from Google Clound [[Guide Here](https://developers.google.com/workspace/gmail/api/quickstart/python)]
 
 1. Create a subfolder name private in config
