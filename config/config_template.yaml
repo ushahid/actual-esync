@@ -1,0 +1,61 @@
+# Actual configuration
+# Important: All paths in this config file must be relative to the src directory
+actual:
+  # URL for your actual budget server instance
+  url: http://localhost:5006
+  # Create a YAML file in this path with just one key "pwd" containing password to your account
+  actual_pwd_filepath: ../config/private/actual.yaml
+  # Set this to the name of your budget file
+  file: MyBudget
+  # Set this to null if no pre-trained models exist, train models using src/train_eval_clf.py script
+  models: ../models/actual_models.pkl
+  # Your Actual Budget timezone (IANA)
+  TZ: America/New_York
+
+
+# Accounts configuration
+accounts:
+  # Name of the account, must match the account name in actual
+  Discover It:
+    # Gmail label from which to pull emails pertaining to this account
+    gmail_label: Discover Card Alerts
+    
+    # Only the emails with subject matching this regex are parsed
+    valid_subject_regex: Transaction Alert
+
+    # Amount extraction
+    amount:
+      # Regex to extract ammount, this regex must have named group(s)
+      regex: 'Amount: \$(?P<amount>[0-9,]+\.[0-9][0-9])<br/>'
+      # Name of the group(s) containing amount in the regex
+      regex_keys:
+      - amount
+      # Which part of the email has regex, types are html, body, text and soup [see below for soup details]
+      source: html
+
+      # This must be present if source is soup (useful if data is in HTML tables)
+      # soup:
+      #   # BeautifulSoup CSS selector for amount or description https://www.crummy.com/software/BeautifulSoup/bs4/doc/#css-selectors
+      #   selector: div.mj-column-per-50 p
+      #   source: body
+
+    # Description extraction (should contain merchant information)
+    description:
+      # Regex to extract merchant, this regex must have named group(s)
+      regex: 'Merchant: (?P<desc>.+)<br/>'
+      # Name of the group(s) containing description in the regex
+      regex_keys:
+      - desc
+      # Which part of the email has regex, types are html, body, text
+      source: html
+
+    # Timestamp for last sync in UTC, emails after this timestamp will be used for synchronization.
+    # This is automatically updated after every sync
+    last_sync: 2026-01-15 23:15:52.436341+00:00
+    
+    # Ignore all transactions where description matches the following regex
+    ignore_regex: null
+
+    # All transactions are assumed to be negative.
+    # Transactions where the description matches this regex are considered positive (or income)
+    deposit_regex: null
