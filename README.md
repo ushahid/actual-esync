@@ -3,14 +3,15 @@ A utility to synchronize transactions with Actual Budget via Emails
 
 
 # Setup
-1. Enable the Gmail API and Obtain the credentails JSON file from Google Clound [Guide Here](https://developers.google.com/workspace/gmail/api/quickstart/python)
+1. Enable Email notifications in your Bank for every transaction and in your Gmail app, filter those messages so that it automatically applies a custom label
+1. Enable the Gmail API and Obtain the credentails JSON file from Google Clound [[Guide Here](https://developers.google.com/workspace/gmail/api/quickstart/python)]
 
 1. Create a subfolder name private in config
 ```
-mkdir private/config
+mkdir config/private
 ```
 
-1. Rename the file to client_secret.json and move it to private/config
+1. Rename the credential file to client_secret.json and move it to private/config
 1. Install the requirements
 ```
 pip install -r requirements.txt
@@ -19,7 +20,7 @@ pip install -r requirements.txt
 ```
 cp config/config_template.yaml config/config.yaml
 ```
-1. Edit config/config.yaml to add details of your actual instance (more details in YAML comments), you may skip details under accounts until you want to run sync. WARNING: config.yaml is re-written every time you run sync, any comments will be discarded.
+1. Edit config/config.yaml to add details of your actual instance (more details in YAML comments, you may skip details under accounts until you want to run sync). WARNING: config.yaml is re-written every time you run sync, any comments will be discarded.
 1. If you would like to train the machine learning models to automatically classify payee and categories, run the following command after navigating to the src directory (this might take a few minutes)
 ```
 cd src
