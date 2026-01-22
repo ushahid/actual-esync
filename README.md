@@ -11,7 +11,7 @@ A utility to synchronize transactions with Actual Budget via Emails. Currently i
 mkdir config/private
 ```
 
-- Rename the credential file to client_secret.json and move it to private/config
+- Rename the credential file to client_secret.json and move it to config/private
 - Install the requirements
 ```
 pip install -r requirements.txt
