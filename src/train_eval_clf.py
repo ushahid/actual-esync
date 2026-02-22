@@ -69,7 +69,8 @@ def main():
 
     # Encode account
     acc_enc = OneHotEncoder()
-    train_acc_feat = acc_enc.fit_transform(train_df["account"].values.reshape(-1, 1)).todense()
+    acc_enc.fit(df["account"].values.reshape(-1, 1))
+    train_acc_feat = acc_enc.transform(train_df["account"].values.reshape(-1, 1)).todense()
     test_acc_feat = acc_enc.transform(test_df["account"].values.reshape(-1, 1)).todense()
 
 
