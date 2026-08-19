@@ -88,7 +88,7 @@ def main():
     y_train = cat_label_enc.transform(train_df["category"].values)
     y_test = cat_label_enc.transform(test_df["category"].values)
     logger.info("Training category classifier")
-    cat_clf = RandomForestClassifier(class_weight="balanced")
+    cat_clf = RandomForestClassifier(n_estimators=150, class_weight="balanced")
     cat_clf.fit(X_train, y_train)
     preds = cat_clf.predict(X_test)
     classes = [cat_label_enc.classes_[idx] for idx in np.unique(np.concat([y_test, preds]))]
@@ -100,7 +100,7 @@ def main():
     logger.info("Training payee classifier")
     y_train = payee_label_enc.transform(train_df["payee"].values)
     y_test = payee_label_enc.transform(test_df["payee"].values)
-    payee_clf = RandomForestClassifier(class_weight="balanced")
+    payee_clf = RandomForestClassifier(n_estimators=150, class_weight="balanced")
     payee_clf.fit(X_train, y_train)
     preds = payee_clf.predict(X_test)
     classes = [payee_label_enc.classes_[idx] for idx in np.unique(np.concat([y_test, preds]))]
