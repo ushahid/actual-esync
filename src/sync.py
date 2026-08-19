@@ -105,7 +105,7 @@ def fetch_transactions(cfg, gmail):
 
 
 def sync_transactions(account_name, transactions, actual_cfg, actual_pwd):
-    with Actual(base_url=actual_cfg["url"], password=actual_pwd, file=actual_cfg["file"]) as actual:
+    with Actual(base_url=actual_cfg["url"], token=actual_pwd, file=actual_cfg["file"]) as actual:
         account = queries.get_account(actual.session, account_name)
         inserted = []
         for transaction in transactions:

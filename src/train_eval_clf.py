@@ -36,7 +36,7 @@ def main():
 
     logger.info("Loading transactions")
     transactions = []
-    with Actual(base_url=cfg["actual"]["url"], password=actual_pwd, file=cfg["actual"]["file"]) as actual:
+    with Actual(base_url=cfg["actual"]["url"], token=actual_pwd, file=cfg["actual"]["file"]) as actual:
         trans = queries.get_transactions(actual.session)
         for tran in trans:
             if tran.category is not None:
